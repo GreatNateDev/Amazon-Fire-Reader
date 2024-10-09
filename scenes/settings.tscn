@@ -1,13 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/settings.gd" type="Script" id=1]
+[ext_resource path="res://assets/x-mark-64.png" type="Texture" id=2]
 
-[sub_resource type="DynamicFontData" id=1]
-font_path = "res://OpenSans-Italic-VariableFont_wdth,wght.ttf"
-
-[sub_resource type="DynamicFont" id=2]
-size = 40
-font_data = SubResource( 1 )
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 1 )
 
 [node name="settings" type="Control"]
 anchor_right = 1.0
@@ -15,39 +12,110 @@ anchor_bottom = 1.0
 script = ExtResource( 1 )
 
 [node name="fontsize" type="HSlider" parent="."]
-margin_left = 38.0
-margin_top = 68.0
-margin_right = 355.0
-margin_bottom = 184.0
-min_value = 20.0
-max_value = 40.0
+margin_left = 20.0
+margin_top = 14.0
+margin_right = 177.0
+margin_bottom = 93.0
+min_value = 1.0
+max_value = 20.0
 value = 20.0
 
 [node name="fontsizelbl" type="Label" parent="."]
-margin_left = 42.0
-margin_top = 14.0
-margin_right = 362.0
-margin_bottom = 102.0
+margin_left = 65.0
+margin_top = 2.0
+margin_right = 123.0
+margin_bottom = 16.0
 size_flags_stretch_ratio = 0.0
-custom_fonts/font = SubResource( 2 )
 text = "Font Size"
 align = 1
 valign = 1
 
+[node name="value" type="Label" parent="fontsizelbl"]
+margin_left = 3.0
+margin_top = 22.0
+margin_right = 61.0
+margin_bottom = 36.0
+size_flags_stretch_ratio = 0.0
+text = "x"
+align = 1
+valign = 1
+
 [node name="maxwords" type="HSlider" parent="."]
-margin_left = 397.0
-margin_top = 78.0
-margin_right = 777.0
-margin_bottom = 189.0
+margin_left = 195.0
+margin_top = 31.0
+margin_right = 368.0
+margin_bottom = 75.0
 min_value = 20.0
-max_value = 1000.0
+max_value = 200.0
 value = 20.0
 
 [node name="maxwordslbl" type="Label" parent="."]
-margin_left = 404.0
-margin_top = 14.0
-margin_right = 772.0
-margin_bottom = 156.0
+margin_left = 242.0
+margin_top = 1.0
+margin_right = 313.0
+margin_bottom = 15.0
 text = "Max Words"
 align = 1
 valign = 1
+
+[node name="value" type="Label" parent="maxwordslbl"]
+margin_left = 2.0
+margin_top = 21.0
+margin_right = 73.0
+margin_bottom = 35.0
+text = "x"
+align = 1
+valign = 1
+
+[node name="x" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -76.0
+margin_bottom = 70.0
+icon = ExtResource( 2 )
+
+[node name="ColorPicker" type="ColorPicker" parent="."]
+visible = false
+margin_left = 398.0
+margin_top = 33.0
+margin_right = 706.0
+margin_bottom = 495.0
+edit_alpha = false
+presets_enabled = false
+presets_visible = false
+
+[node name="BackroundPanel" type="Panel" parent="."]
+margin_left = 404.0
+margin_top = 5.0
+margin_right = 610.0
+margin_bottom = 102.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="colorpickerx" type="Button" parent="."]
+margin_left = 427.0
+margin_top = 20.0
+margin_right = 593.0
+margin_bottom = 89.0
+text = "Change Backround Color"
+
+[node name="text_color" type="Button" parent="."]
+margin_left = 628.0
+margin_top = 14.0
+margin_right = 802.0
+margin_bottom = 97.0
+text = "Change Text color"
+
+[node name="ColorPicker2" type="ColorPicker" parent="."]
+visible = false
+margin_left = 631.0
+margin_top = 106.0
+margin_right = 939.0
+margin_bottom = 568.0
+edit_alpha = false
+presets_enabled = false
+presets_visible = false
+
+[connection signal="pressed" from="x" to="." method="_on_x_pressed"]
+[connection signal="pressed" from="colorpickerx" to="." method="_on_colorpickerx_toggled"]
+[connection signal="pressed" from="text_color" to="." method="_on_text_color_pressed"]
+[connection signal="color_changed" from="ColorPicker2" to="." method="_on_ColorPicker2_color_changed"]
